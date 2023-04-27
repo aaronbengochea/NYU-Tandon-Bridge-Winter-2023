@@ -76,8 +76,6 @@ int main () {
     vector<Node*> neg;
     vector<Node*> flat;
 
-    int j = 5;
-
     intro();
 
     cout << "Open the file containing contributions" << endl;
