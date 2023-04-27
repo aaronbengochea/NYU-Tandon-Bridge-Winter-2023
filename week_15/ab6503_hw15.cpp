@@ -425,7 +425,7 @@ void settleDebts(LList& peopleList, vector<Node*>& posNodeVect, vector<Node*>& n
                 cout << ".00";
             }
 
-            else if (fmod(negDecimal * 10.0, 10.0) == 0.0){
+            else if (fmod(negDecimal * 100.0, 10.0) == 0.0){
                 cout << '0';
             }
             cout << endl;
@@ -450,7 +450,7 @@ void settleDebts(LList& peopleList, vector<Node*>& posNodeVect, vector<Node*>& n
             
             cout << " $" << posDecimal;
 
-            if (fmod(posDecimal * 100.0, 100.0)== 0.0){
+            if (fmod(posDecimal * 100.0, 100.0) == 0.0){
                 cout << ".00" ;
             }
             else if (fmod(posDecimal * 100.0, 10.0) == 0.0){
