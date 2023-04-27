@@ -10,6 +10,8 @@ int main() {
     vector<int> dataVect = {100, 2, 6, -3, 18, 27, -5, -1000};
     vector<int> dataMinMaxVect = findMinMax(dataVect, 0, dataVect.size() - 1);
 
+    int j = 1;
+
     cout << "Entire Data Vector: ";
     printVector(dataVect);
 
