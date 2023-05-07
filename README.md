@@ -1,6 +1,4 @@
-# NYU Tandon Bridge Winter 2021
-
-> The 100% Online NYU Tandon Bridge Certificate program is an affordable, flexible way for students with a non-technical background to develop the skills necessary for a STEM Master’s degree.
+# NYU Tandon Bridge Winter 2023
 
 ## Program Overview
 
@@ -12,6 +10,5 @@ This non-credit certificate course is equivalent to 400 hours of learning and mo
 
 Basic proficiency in college algebra and some exposure to C++ is recommended for success in the course. Please see our suggested [Preparatory Resources](https://engineering.nyu.edu/academics/programs/nyu-tandon-bridge/preparatory-resources) for learning prior to the start of the course.
 
-## Notes
 
-My final grade is **A**, and all the homework and exams (except exam 4) are **corrected** after graded. Feel free to open issues or email me if you have any questions about the Bridge program.
+
