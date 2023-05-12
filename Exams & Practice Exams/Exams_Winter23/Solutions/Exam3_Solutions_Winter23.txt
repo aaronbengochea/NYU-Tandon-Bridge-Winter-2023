@@ -1,0 +1,189 @@
+Name: Aaron Bengochea
+
+NYU Email: ab6503@nyu.edu
+
+
+1) A
+
+2) C
+
+3) C
+
+4)
+BASE::val = x;
+
+
+5)
+BSTNode<T>* temp = passedNode;
+BSTNode<T>* parent = temp->parent;
+
+if (parent->left == temp){
+    cout << 'left child';
+}
+else {
+    cout << 'right child';
+}
+
+6) 
+-First iterate through the LL and store all of its data in a vector - O(N).
+-Use the mergesort algorithm on the vector, mergesort's worst case runtime is O(N Log N), it uses more space then quicksort but guarentees a O(N Log N) runtime and we have sufficient space as stated by the problem.
+-We then iterate through the sorted vector and either reassign the data in each node of the original LL or create a new LL and insert each element of the vector into the new LL.
+
+7)
+-In an AVL tree, the height of each nodes subtrees should not have an absolute difference greater then 1.
+-We can do so recursively by getting the height of each nodes left and right subtrees.
+-If the heights of those subtrees have an absolute difference greater then 1 then the tree DOES NOT meet the requirements of an AVL tree.
+-If the node's height of its subtrees have an absolute difference less then 1 then the tree DOES meet the requirements of an AVL tree.
+-The overall runtime of this recursive function should be O(N) because we only visit each node once.
+
+8)
+
+#include <fstream>
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+void readInFile(ifstream& inFile);
+void indexSortInFIle(ifstream& inFile, vector<int>& index, vector<string>& names);
+void sendOutFile(ofstream& outFile, vector<int>& index, vector<string>& names);
+
+
+
+int main () {
+
+    ifstream inFile;
+    ofstream outFile;
+    vector<int> indexs;
+    vector<string> names;
+
+    readInFile(inFile);
+    indexSortInFIle(inFile, indexs, names);
+
+    for(int i = 0; i < indexs.size(); i++){
+        cout << indexs[i] << ' ';
+    }
+
+    for(int i = 0; i < names.size(); i++){
+        cout << names[i] << ' ';
+    }
+
+    sendOutFile(outFile, indexs, names);
+
+
+
+
+    return 0;
+}
+
+void readInFile(ifstream& inFile){
+    string filename;
+
+    cout << "Enter the file name: ";
+    cin >> filename;
+    inFile.open(filename);
+
+    while(inFile.fail()){
+        cout << "Filename Error" << endl;
+        cout << "Please enter a new file name: ";
+        cin >> filename;
+        inFile.clear();
+        inFile.open(filename);
+    }
+}
+
+void indexSortInFIle(ifstream& inFile, vector<int>& indexs, vector<string>& names){
+    int index;
+    string name;
+    vector<string> test;
+
+    queue<int> indexStore;
+    queue<string> nameStore;
+
+
+
+    while(inFile >> index){ //used space instead of tab in the input file
+        inFile.ignore(1, '\t'); //couldnt get the '\t' to work, has happened to me in the past
+        inFile >> name;
+        //getline(inFile, name);
+
+        indexs.push_back(index);
+        names.push_back(name);
+    }
+
+    int marker = 0;
+    int i = 0;
+    int temp = 0;
+    int lowIndex = 0;
+
+    string tempString;
+
+
+    while(marker < indexs.size()){
+        int lowVal = indexs[marker];
+        i = marker;
+        lowIndex = marker;
+        
+
+        for(i; i < indexs.size(); i++){
+            if(indexs[i] < indexs[marker]){
+                temp = indexs[i];
+                indexs[i] = indexs[marker];
+                indexs[marker] = temp;
+
+                tempString = names[i];
+                names[i] = names[marker];
+                names[marker] = tempString;
+            }
+
+
+        }
+
+        marker++;
+        
+   }
+
+
+
+
+
+
+
+}
+
+void sendOutFile(ofstream& outFile, vector<int>& index, vector<string>& names){
+    outFile.open("input.txt");
+
+    for(int i = 0; i < index.size(); i++){
+        outFile << index[i] << '\t' << names[i] << endl;
+    }
+}
+
+
+9)
+
+void printInOrderTwo(BSTNode* root, list<int>& head, bool& flag){
+    BSTNode* tempBST = root;    
+
+    if (tempBST != nullptr){
+        printInOrderTwo(tempBST->left, head, flag);
+        if (tempBST->data == head.front()){
+            head.pop_front();
+        } else{
+            flag = false;
+        }
+        printInOrderTwo(tempBST->right, head, flag);
+    }
+}
+
+bool compare(BSTNode* root, list<int> head){
+    bool flag = true;
+
+    printInOrderTwo(root, head, flag);
+
+    return flag;
+}
+
+
+
+
