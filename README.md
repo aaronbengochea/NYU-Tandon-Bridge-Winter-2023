@@ -12,7 +12,7 @@ Basic proficiency in college algebra and some exposure to C++ is recommended for
 
 ## Program Schedule
 
-The course is sectioned into 4 exams. Course topics are covered in the following sections: 
+The course is sectioned into 4 parts each culminating with an exam. The exams tend to mostly cover the material and topics covered in its given section. Course topics are covered in the following sections: 
 
 Exam 1: Discrete Math & Programming in C++ (Basic)  
 Exam 2: Discrete Math & Programming in C++ (Intermediate)  
