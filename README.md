@@ -14,10 +14,7 @@ Basic proficiency in college algebra and some exposure to C++ is recommended for
 
 The course is sectioned into 4 exams. Course topics are covered in the following sections: 
 
-Exam 1: Discrete Math & Programming in C++ (basic)
-
-Exam 2: Discrete Math & Programming in C++ (intermediate)
-
+Exam 1: Discrete Math & Programming in C++ (Basic)
+Exam 2: Discrete Math & Programming in C++ (Intermediate)
 Exam 3: Object Oriented Programming & Data Structures and Algorithms
-
 Exam 4: Principles of Operating Systems & Intro to Computer Networking
