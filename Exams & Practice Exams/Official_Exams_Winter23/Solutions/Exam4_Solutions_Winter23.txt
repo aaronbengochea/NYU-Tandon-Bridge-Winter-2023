@@ -1,0 +1,145 @@
+1) B
+2) D
+3) B
+4) Semaphores
+5) Iterative DNS Query
+
+6) 
+The NAT device would perform an address translation on the outbound packet to hide the internal IP while using the public IP instead.
+The NAT device will also modify the source port number to a random port assigned by the NAT itself.
+When the server at IP 4.2.2.2 recieves the updated packet, it will generate a response based on the destination and Port. In this case, since the destination is port 80, we can say that the server would expect an HTTP request.
+
+7) Batch Multiprogramming refers to loading multiple programs into main memory and then running them one by one. In today's enviornment, batch multiprogramming is less used due to the advancements in OS, Hardware and CPU technologies.
+Today's users exepect multitasking abilities out of their computers and operating systems. The operating systems support multitasking, GUIs while also dynamically managing resources within our system. Modern day OS specialize in being able to manage multiple processes in paralel.
+
+8) Multithreading can lead to race conditions, to many threads competing for resources can actually cause delays rather then targeted effeciency via concurrency, the more threads the more core system resouces being consumed (although not very costly), Need to implement data structures in order to threads properly syncronize which creates potentially added unneeded complexity and they are difficult to debug. 
+Threads should not be used when a program does not inherently require parallelism or concurrency, if the system is low on resources (to save space on thread memory overhead) and potentially any critical sections in your program where you specifically only want one execution block to completely execute before the next.
+
+
+9) HTTP is stateless, with the introduction of caching techniques, developers can create state for each individual user providing a more tailored and custumized experience for the end user.
+An example would be how amazon.com remembers your cart despite you closing the tab or signing off.
+
+10) I would use the following:
+Process Priority - determine the importance or urgency of the process
+Resource Utilization - if the process is consumming excessive resources or has been inactive for a while, it can be a candidate for suspension in order to free up system resources.
+Process Waiting Time - The waiting time of the process can be tracked and used to clear space and congestion
+I/O operations - processes waiting for extended periods of time on IO operations can be suspended to free up resources
+
+11) In a Weighted Fair Queueing system each traffic flow is assigned a priority and weight. The weight represents the relative importance of the available bandwidth allocated to that flow. The higher the weight, the more bandwidth it recieves.
+Example:
+Prio 1: weight 4
+Prio 2: weight 2
+Prio 3: weight 1
+
+As the packets arrive, they are classified based on their weights. 
+Service time is calculated by dividing of each packets priority by the total sum of all priorities.
+
+Prio 1: Would have 4/7 of the available bandwidth
+Prio 2: Would have 2/7 of the available bandwidth
+Prio 3: Would have 1/7 of the available bandwidth
+
+As for scheduling:
+Prio 1: Would have 4/7 of the available time for packet transmission.
+Prio 2: Would have 2/7 of the available time for packet transmission.
+Prio 3: Would have 1/7 of the available time for packet transmission.
+
+12)
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+class Clothing;
+
+class Person {
+private:
+    string name;
+    vector<Clothing*> clothes;
+public:
+    Person(const string& name = "Jane Doe");
+    string getName();
+    bool purchaseClothing(Clothing* clothing);
+    bool tradeClothing(Clothing* myClothing, Clothing* otherPersonClothing);
+    friend ostream& operator<<(ostream& outStream, const Person& person);
+}
+
+class Clothing {
+private:
+    string description;
+    Person* owner;
+public:
+    Clothing(const string& description);
+    string getDescription();
+    bool isOwned();
+    Person* getOwner();
+    void setOwner(Person* person);
+}
+
+// Person Class Implementation
+
+Person::Person(const string& name) : name(name) {}
+
+string Person::getName() {
+    return name;
+}
+
+bool Person::purchaseClothing(Clothing* clothing){
+    if(!clothing->isOwned()){
+        clothing->setOwner(this);
+        clothes.push_back(clothing);
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+bool Person::tradeClothing(Clothing* myClothing, Clothing* otherPersonClothing){
+    if(myClothing->isOwned() && myClothing->getOwner() == this){
+        Clothing* otherClothing;
+
+        if(otherPersonClothing->isOwned() && otherPersonClothing->getOwner() != this){
+            myClothing->setOwner(otherPersonClothing->getOwner());
+            otherPersonClothing->setOwner(this);
+            return true;
+        }
+    }
+
+    return false;
+
+}
+
+ostream& operator<<(ostream& outStream, const Person& person){
+    outStream << "Name: " << person.name << endl;
+    outStream << "Owned Clothing: " << endl;
+
+    for(auto& clothing : person.clothes){
+        outStream << "- " << clothing->getDescription() << endl;
+    }
+
+    outStream << endl;
+
+    return outStream;
+}
+
+// Clothing class implementation
+
+Clothing::Clothing(const string& description) : description(description), owner(nullptr) {}
+
+string Clothing::getDescription() {
+    return description;
+}
+
+bool Clothing::isOwned() {
+    return owner != nullptr;
+}
+
+Person* Clothing::getOwner() {
+    return owner;
+}
+
+void Clothing::setOwner(Person* person) {
+    owner = person;
+}
+
+
