@@ -17,4 +17,8 @@ The course is sectioned into 4 parts each culminating with an exam. The exams te
 Exam 1: Discrete Math & Programming in C++ (Basic)  
 Exam 2: Discrete Math & Programming in C++ (Intermediate)  
 Exam 3: Object Oriented Programming & Data Structures and Algorithms  
-Exam 4: Principles of Operating Systems & Intro to Computer Networking  
+Exam 4: Principles of Operating Systems & Intro to Computer Networking 
+
+## Program Conclusion
+
+I succesfully completed the program earning distinction with a final grade of -A.
